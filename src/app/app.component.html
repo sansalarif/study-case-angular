@@ -1,28 +1,75 @@
-<div>
-  daftar Nasabah
-</div>
-<div class="overflow-x-auto mt-7">
-  <table class="table-auto w-full border border-collapse">
-    <thead>
-      <tr>
-        <th class="border px-4 py-2">Avatar</th>
-        <th class="border px-4 py-2">Nama</th>
-        <th class="border px-4 py-2">Negara</th>
-        <th class="border px-4 py-2">Kota</th>
-        <th class="border px-4 py-2">Saldo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of customer" class="text-center">
-        <td class="border px-4 py-2">
-          <img src="{{item.avatar}}" class="w-16 h-16 object-cover rounded-full" alt="{{item.name}}">
-        </td>
-        <td class="border px-4 py-2">{{item.name}}</td>
-        <td class="border px-4 py-2">{{item.country}}</td>
-        <td class="border px-4 py-2">{{item.city}}</td>
-        <td class="border px-4 py-2">{{item.balance}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<router-outlet></router-outlet>
+<main class="p-8">
+  <div class="flex justify-between">
+    <h1 class="text-lg font-bold text-black pt-3" (click)="showProfile()"> Hi Santi </h1>
+    <button class="bg-orange-500 rounded px-2 py-3 w-24 text-white font-semibold" (click)="showPopUp()"> Add + </button>
+  </div>
+  <div class="overflow-x-auto mt-7">
+    <table class="table-auto w-full border border-collapse">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">Avatar</th>
+          <th class="border px-4 py-2">Nama</th>
+          <th class="border px-4 py-2">Negara</th>
+          <th class="border px-4 py-2">Kota</th>
+          <th class="border px-4 py-2">Saldo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of customer" class="text-center">
+          <td class="border px-4 py-2">
+            <img src="{{item.avatar}}" class="w-16 h-16 object-cover rounded-full" alt="{{item.name}}">
+          </td>
+          <td class="border px-4 py-2">{{item.name}}</td>
+          <td class="border px-4 py-2">{{item.country}}</td>
+          <td class="border px-4 py-2">{{item.city}}</td>
+          <td class="border px-4 py-2">{{item.balance}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- showPopUp -->
+  <div *ngIf="tampilPopUp" class="fixed top-0 left-0 w-full flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white w-1/2 mx-auto mt-20 p-8 rounded">
+      <h2 class="text-2xl font-bold mb-4">Add New Entry</h2>
+      <form>
+        <form>
+          <div class="mb-4">
+            <label for="nama" class="block text-sm font-semibold text-gray-600">Nama:</label>
+            <input #nama type="text" id="nama" name="nama" class="w-full p-2 border rounded">
+          </div>
+    
+          <div class="mb-4">
+            <label for="kota" class="block text-sm font-semibold text-gray-600">Kota:</label>
+            <input #kota type="text" id="kota" name="kota" class="w-full p-2 border rounded">
+          </div>
+    
+          <div class="mb-4">
+            <label for="negara" class="block text-sm font-semibold text-gray-600">Negara:</label>
+            <input #negara type="text" id="negara" name="negara" class="w-full p-2 border rounded">
+          </div>
+
+          <div class="mb-4">
+            <label for="mataUang" class="block text-sm font-semibold text-gray-600">Mata Uang:</label>
+            <input #mataUang type="text" id="mataUang" name="mataUang" class="w-full p-2 border rounded">
+          </div>
+    
+          <div class="mb-4">
+            <label for="saldo" class="block text-sm font-semibold text-gray-600">Saldo:</label>
+            <input #saldo type="text" id="saldo" name="saldo" class="w-full p-2 border rounded">
+          </div>
+          
+          <div class="inline-flex">
+            <button type="button" (click)="registerData(nama.value, mataUang.value, saldo.value, kota.value, negara.value)" class="bg-orange-500 rounded px-3 py-2 mr-2 text-white">Submit</button>
+            <button type="button" (click)="showPopUp()" class="bg-gray-500 rounded px-3 py-2 text-white">Close</button>
+          </div>
+        </form>
+      </form>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-center mt-4">
+    <button onclick="hapusData()" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400">Hapus Data</button>
+  </div>
+  <router-outlet></router-outlet>
+</main>

@@ -27,6 +27,25 @@ export class AppComponent {
     })
   }
 
+  tampilProfile:boolean = false
+
+  showProfile() {
+    // this.tampilProfile = !this.tampilProfile
+    console.log('Hello')
+  }
+
+  tampilPopUp:boolean = false
+
+  showPopUp() {
+    this.tampilPopUp = !this.tampilPopUp
+  }
+
+  registerData(name:String, mataUang:String, kota:String, saldo:String, negara:String) {
+    this.customerService.submitData(name, mataUang, saldo, kota, negara).subscribe((res)=> {
+      console.log('success', res)
+    })
+  }
+
   // getDataCustomerId(id: any) {
   //   this.customerService.get(id).subscribe((res) => {
   //     console.log('success get data',res);
